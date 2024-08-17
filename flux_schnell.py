@@ -5,13 +5,15 @@ from diffusers import DiffusionPipeline
 
 class FluxSchnell:
     repo_id = "black-forest-labs/FLUX.1-schnell"
-    
+
     def __init__(self,
                  device: str = "mps",
                  create_dirs: bool = True):
         self.module_dir = os.path.dirname(__file__)
         self.device = self.initialize_device(device)
-        self.model = self.instantiate_model(self.__class__.repo_id)
+        self.model = self.instantiate_model(self.__class__.repo_id, 
+                                            self.device,
+                                            torch.bfloat16)
         if create_dirs: self.create_dirs(self.module_dir)
 
     def generate(self, prompt, save=True, show=True):
@@ -26,12 +28,21 @@ class FluxSchnell:
                 image.show()
         return images
 
-    def instantiate_model(self, repo_id):
+    def instantiate_model(self, repo_id, device, dtype):
         """Returns instantiated model"""
-        return DiffusionPipeline.from_pretrained(pretrained_model_name_or_path=repo_id)
+        model = DiffusionPipeline.from_pretrained(repo_id,
+                                                  torch_dtype=dtype).to(device)
+        return model
     
     def initialize_device(self, device: str):
         """Return the GPU device based on availability"""
+        if device is None:
+            if torch.cuda.is_available():
+                device = "cuda"
+            elif torch.backends.mps.is_available():
+                device = "mps"
+            else:
+                device = "cpu"
         return torch.device(device)
 
     def create_dirs(self, root):
