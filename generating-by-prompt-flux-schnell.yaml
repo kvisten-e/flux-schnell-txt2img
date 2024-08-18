@@ -11,4 +11,6 @@ dependencies:
   - diffusers
   - transformers
   - accelerate
+  - sentencepiece
+  - protobuf
   - gradio
