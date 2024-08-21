@@ -7,8 +7,9 @@ class FluxSchnell:
     repo_id = "black-forest-labs/FLUX.1-schnell"
 
     def __init__(self,
-                 device: str = "mps",
-                 create_dirs: bool = True):
+                 device: str = "cpu",
+                 create_dirs: bool = True,
+                 enable_sequential_cpu_offload: bool = True):
         self.module_dir = os.path.dirname(__file__)
         self.device = self.initialize_device(device)
         self.model = self.instantiate_model(self.__class__.repo_id, 
@@ -28,10 +29,12 @@ class FluxSchnell:
                 image.show()
         return images
 
-    def instantiate_model(self, repo_id, device, dtype):
+    def instantiate_model(self, repo_id, device, dtype, enable_sequential_cpu_offload):
         """Returns instantiated model"""
         model = DiffusionPipeline.from_pretrained(repo_id,
                                                   torch_dtype=dtype).to(device)
+        if enable_sequential_cpu_offload:
+            model.enable_sequential_cpu_offload(device=device)
         return model
     
     def initialize_device(self, device: str):
