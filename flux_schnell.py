@@ -3,23 +3,26 @@ import torch
 from diffusers import DiffusionPipeline
 
 
+
 class FluxSchnell:
     repo_id = "black-forest-labs/FLUX.1-schnell"
 
     def __init__(self,
-                 device: str = "cpu",
+                 device: str = None,
                  create_dirs: bool = True,
                  enable_sequential_cpu_offload: bool = True):
         self.module_dir = os.path.dirname(__file__)
         self.device = self.initialize_device(device)
         self.model = self.instantiate_model(self.__class__.repo_id, 
                                             self.device,
-                                            torch.bfloat16)
+                                            torch.bfloat16,
+                                            enable_sequential_cpu_offload)
         if create_dirs: self.create_dirs(self.module_dir)
 
-    def generate(self, prompt, save=True, show=True):
+    def generate(self, prompt, num_inference_steps=4, save=True, show=True):
         """Returns list of generated images for given prompts"""
-        images = self.model(prompt)
+        images = self.model(prompt, 
+                            num_inference_steps=num_inference_steps).images
         for i, image in enumerate(images):
             if save:
                 image.save(os.path.join(self.module_dir, 
@@ -32,9 +35,11 @@ class FluxSchnell:
     def instantiate_model(self, repo_id, device, dtype, enable_sequential_cpu_offload):
         """Returns instantiated model"""
         model = DiffusionPipeline.from_pretrained(repo_id,
-                                                  torch_dtype=dtype).to(device)
+                                                  torch_dtype=dtype)
         if enable_sequential_cpu_offload:
             model.enable_sequential_cpu_offload(device=device)
+        else:
+            model = model.to(device)
         return model
     
     def initialize_device(self, device: str):
@@ -57,4 +62,5 @@ class FluxSchnell:
 
 
 if __name__ == "__main__":
-    flux_schnell = FluxSchnell()
+    prompt = "A cat holding a sign that says hello world"
+    flux_schnell = FluxSchnell().generate(prompt, 4)
