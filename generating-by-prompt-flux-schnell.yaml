@@ -14,3 +14,6 @@ dependencies:
   - sentencepiece
   - protobuf
   - gradio
+  - pip
+  - pip:
+    - xformers
