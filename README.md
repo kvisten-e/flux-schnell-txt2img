@@ -1,5 +1,10 @@
 # Generate by Prompt using Flux-schnell
 
+## Introduction
+
+## Setting Up the Environment
+
+## Generating Images 
 
 ### Example usage
 ~~~
