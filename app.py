@@ -10,6 +10,9 @@ def parse_arguments():
     parser.add_argument("--enable_sequential_cpu_offload",
                         action="store_true",
                         help="Enables sequential cpu offload")
+    parser.add_argument("--share",
+                        action="store_true",
+                        help="Allows Gradio to produce public link")
     return parser.parse_args()
 
 
@@ -18,6 +21,7 @@ if __name__ == "__main__":
     flux_schnell = FluxSchnell(None,
                                False,
                                args.enable_sequential_cpu_offload)
+    
     gr_interface = gr.Interface(
         fn=lambda prompt, num_inference_steps: flux_schnell.generate(prompt,
                                                                      num_inference_steps,
@@ -31,5 +35,6 @@ if __name__ == "__main__":
         ],
         outputs=gr.Image(type="pil")
     )
+    gr_interface.launch(share=args.share)
 
     
