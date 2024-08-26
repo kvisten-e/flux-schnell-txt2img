@@ -45,7 +45,33 @@ we utilize the pretrained model [Flux-schnell  at Hugging Face](https://huggingf
 
 ## Generating Images
 
-### Example usage
+Check it out how to use:
+
+~~~
+python3 generate.py --help
+~~~
+
+Output:
+
+~~~
+Generate images by prompt using Flux-schnell
+
+positional arguments:
+  prompt                Prompt that be used during inference
+
+options:
+  -h, --help            show this help message and exit
+  --num_inference_steps NUM_INFERENCE_STEPS
+                        Number of inference steps used during generating
+  --device {cuda,mps,cpu}
+                        The device used during inference. Default: `None`
+  --enable_sequential_cpu_offload
+                        Enables sequential cpu offload during inference
+~~~
+
+### Example usages
+Execute the following code blocks to generate the corresponding images displayed below. The results will be saved into the folder `./generated-images`.
+
 ~~~
 python3 generate.py\
  "an image of a turtle in Picasso style"\
