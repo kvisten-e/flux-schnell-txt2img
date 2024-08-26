@@ -1,6 +1,9 @@
 # Generate by Prompt using Flux-schnell
 
-## Introduction
+## Introduction
+
+We design a module that generates photo-realistic & high resolution images based on user-defined prompts. While preparing the module,
+we utilize the pretrained model [Flux-schnell](https://huggingface.co/black-forest-labs/FLUX.1-schnell) provided by [black forests labs](https://blackforestlabs.ai/) at Hugging Face.
 
 ## Setting Up the Environment
 
