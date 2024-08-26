@@ -16,5 +16,4 @@ dependencies:
   - gradio
   - pip
   - pip:
-    - xformers
     - git+https://github.com/huggingface/diffusers.git@main
