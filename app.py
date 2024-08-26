@@ -6,7 +6,11 @@ from flux_schnell import FluxSchnell
 
 def parse_arguments():
     """Returns parsed arguments"""
-    pass
+    parser = ArgumentParser(description="Generate image using Flux-schnell via Gradio")
+    parser.add_argument("--enable_sequential_cpu_offload",
+                        action="store_true",
+                        help="Enables sequential cpu offload")
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
@@ -20,7 +24,10 @@ if __name__ == "__main__":
                                                                      False,
                                                                      False)[0],
         inputs=[
-            
+            gr.Textbox(lines=3,
+                       placeholder="an image of a lion in Claude Monet style",
+                       label="Prompt"),
+            gr.Slider(minimum=1, maximum=50, step=1, value=4, label="Inference steps")
         ],
         outputs=gr.Image(type="pil")
     )
