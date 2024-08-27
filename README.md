@@ -80,7 +80,7 @@ python3 generate.py\
 ~~~
 
 <p align="center">
-  <img src="assets/generated_image_picasso.png" width="85%" />
+  <img src="assets/generated_image_picasso.png" width="100%" />
 </p>
 
 ~~~
@@ -91,7 +91,7 @@ python3 generate.py\
 ~~~
 
 <p align="center">
-  <img src="assets/generated_image_pissarro.png" width="85%" />
+  <img src="assets/generated_image_pissarro.png" width="100%" />
 </p>
 
 ~~~
@@ -102,7 +102,7 @@ python3 generate.py\
 ~~~
 
 <p align="center">
-  <img src="assets/generated_image_monet.png" width="85%" />
+  <img src="assets/generated_image_monet.png" width="100%" />
 </p>
 
 ## Generating via Gradio
