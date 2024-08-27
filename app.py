@@ -33,7 +33,7 @@ if __name__ == "__main__":
                        label="Prompt"),
             gr.Slider(minimum=1, maximum=50, step=1, value=4, label="Inference steps")
         ],
-        outputs=gr.Image(type="pil"),
+        outputs=gr.Image(type="pil", label="Generated image"),
         examples=[
             ["A painting titled 'Two young peasant women' in Camille Pissaro style",
              4,],
