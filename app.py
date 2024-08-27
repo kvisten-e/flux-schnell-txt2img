@@ -37,7 +37,8 @@ if __name__ == "__main__":
         examples=[
             ["a painting titled 'Two young peasant women' in Camille Pissaro style",
              4,],
-        ]
+        ],
+        title="Generate Image by Prompt using Flux-schnell"
     )
     gr_interface.launch(share=args.share)
 
