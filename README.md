@@ -104,3 +104,23 @@ python3 generate.py\
 <p align="center">
   <img src="assets/generated_image_monet.png" width="85%" />
 </p>
+
+## Generating via Gradio
+
+Check it out how to use:
+
+~~~
+python3 app.py --help
+~~~
+
+Output:
+
+~~~
+Generate image using Flux-schnell via Gradio
+
+options:
+  -h, --help            show this help message and exit
+  --enable_sequential_cpu_offload
+                        Enables sequential cpu offload
+  --share               Allows Gradio to produce public link
+~~~
