@@ -35,10 +35,11 @@ if __name__ == "__main__":
         ],
         outputs=gr.Image(type="pil"),
         examples=[
-            ["a painting titled 'Two young peasant women' in Camille Pissaro style",
+            ["A painting titled 'Two young peasant women' in Camille Pissaro style",
              4,],
         ],
-        title="Generate Image by Prompt using Flux-schnell"
+        title="Generate Image by Prompt using Flux-schnell",
+        allow_flagging="never"
     )
     gr_interface.launch(share=args.share)
 
