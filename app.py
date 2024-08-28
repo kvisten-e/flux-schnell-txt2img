@@ -35,7 +35,7 @@ if __name__ == "__main__":
         ],
         outputs=gr.Image(type="pil", label="Generated image"),
         examples=[
-            ["A painting titled 'Two young peasant women' in Camille Pissaro style",
+            ["A painting titled 'Two young peasant women' in Camille Pissarro style",
              4,],
         ],
         title="Generate Image by Prompt using Flux-schnell",
