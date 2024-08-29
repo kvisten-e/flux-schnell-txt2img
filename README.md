@@ -124,3 +124,22 @@ options:
                         Enables sequential cpu offload
   --share               Allows Gradio to produce public link
 ~~~
+
+### Example usage
+
+To run the app on your local device, execute the following:
+
+~~~
+python3 app.py\
+ --enable_sequential_cpu_offload
+~~~
+
+Then, visit the url [http://127.0.0.1:7860](http://127.0.0.1:7860) to open the interface displayed below:
+
+<p align="center">
+  <img src="assets/gradio_ss.png" width="100%" />
+</p>
+
+<p align="center">
+  <img src="assets/two_young_peasant_women.webp" width="100%" />
+</p>
