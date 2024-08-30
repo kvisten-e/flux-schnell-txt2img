@@ -5,6 +5,7 @@ from diffusers import DiffusionPipeline
 
 
 class FluxSchnell:
+    """A class for managing and running the FLUX.1-schnell model"""
     repo_id = "black-forest-labs/FLUX.1-schnell"
 
     def __init__(self,
