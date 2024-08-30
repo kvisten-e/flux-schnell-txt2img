@@ -12,6 +12,7 @@ class FluxSchnell:
                  device: str = None,
                  create_dirs: bool = True,
                  enable_sequential_cpu_offload: bool = True):
+        """Initializes FluxSchnell class"""
         self.module_dir = os.path.dirname(__file__)
         self.device = self.initialize_device(device)
         self.model = self.instantiate_model(self.__class__.repo_id, 
