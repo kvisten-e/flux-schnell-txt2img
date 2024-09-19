@@ -34,7 +34,6 @@ class FluxSchnell:
                             width=width,
                             height=height,
                             guidance_scale=guidance_scale,
-                            cross_attention_kwargs={"scale": 0.7}
                             ).images
         for i, image in enumerate(images):
             if save:
