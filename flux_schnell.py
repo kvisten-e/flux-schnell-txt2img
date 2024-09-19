@@ -21,10 +21,20 @@ class FluxSchnell:
                                             enable_sequential_cpu_offload)
         if create_dirs: self.create_dirs(self.module_dir)
 
-    def generate(self, prompt, num_inference_steps=4, save=True, show=True):
+    def generate(self, prompt, num_inference_steps=4, seed=None, width=1024, height=1024, guidance_scale=7.5, save=True, show=True):
         """Returns list of generated images for given prompts"""
+        if seed is None:
+            seed = -1
+        
+        generator = torch.Generator("cpu").manual_seed(seed)
+        
         images = self.model(prompt, 
-                            num_inference_steps=num_inference_steps).images
+                            num_inference_steps=num_inference_steps,
+                            generator=generator,
+                            width=width,
+                            height=height,
+                            guidance_scale=guidance_scale
+                            ).images
         for i, image in enumerate(images):
             if save:
                 image.save(os.path.join(self.module_dir, 

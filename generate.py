@@ -22,6 +22,24 @@ def parse_arguments():
     parser.add_argument("--enable_sequential_cpu_offload",
                         action="store_true",
                         help="Enables sequential cpu offload during inference")
+    
+    parser.add_argument("--seed", 
+                        type=int, 
+                        default=None,
+                        help="Random seed for reproducibility. Default: `None`")
+    parser.add_argument("--width", 
+                        type=int, 
+                        default=512,
+                        help="Width of the generated image. Default: 512")
+    parser.add_argument("--height", 
+                        type=int, 
+                        default=512,
+                        help="Height of the generated image. Default: 512")
+    parser.add_argument("--guidance_scale", 
+                        type=float, 
+                        default=7.5,
+                        help="Guidance scale for controlling adherence to the prompt. Default: 7.5")
+             
     return parser.parse_args()
 
 
@@ -31,4 +49,8 @@ if __name__ == "__main__":
         device=args.device,
         enable_sequential_cpu_offload=args.enable_sequential_cpu_offload
     ).generate(args.prompt,
-               args.num_inference_steps)
+               args.num_inference_steps,
+               args.seed,
+               args.width,
+               args.height,
+               args.guidance_scale)
