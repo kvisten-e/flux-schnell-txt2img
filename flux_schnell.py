@@ -28,12 +28,13 @@ class FluxSchnell:
         
         generator = torch.Generator("cpu").manual_seed(seed)
         
-        images = self.model(prompt, 
+        images = self.model([prompt] * 4, 
                             num_inference_steps=num_inference_steps,
                             generator=generator,
                             width=width,
                             height=height,
-                            guidance_scale=guidance_scale
+                            guidance_scale=guidance_scale,
+                            cross_attention_kwargs={"scale": 0.7}
                             ).images
         for i, image in enumerate(images):
             if save:

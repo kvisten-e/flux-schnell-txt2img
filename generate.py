@@ -29,11 +29,11 @@ def parse_arguments():
                         help="Random seed for reproducibility. Default: `None`")
     parser.add_argument("--width", 
                         type=int, 
-                        default=512,
+                        default=1024,
                         help="Width of the generated image. Default: 512")
     parser.add_argument("--height", 
                         type=int, 
-                        default=512,
+                        default=1024,
                         help="Height of the generated image. Default: 512")
     parser.add_argument("--guidance_scale", 
                         type=float, 
