@@ -54,7 +54,7 @@ class FluxSchnell:
         else:
             model = model.to(device)
             
-        model.load_lora_weights("AdamLucek/FLUX.1-dev-lora-adaml", weight_name="flux_lora_Adam.safetensors")
+        model.load_attn_procs("AdamLucek/FLUX.1-dev-lora-adaml", weight_name="flux_lora_Adam.safetensors")
         return model
     
     def initialize_device(self, device: str):
