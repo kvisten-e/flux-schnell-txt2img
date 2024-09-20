@@ -1,6 +1,6 @@
 import os
 import torch
-from diffusers import DiffusionPipeline
+from diffusers import DiffusionPipeline, FluxPipeline
 
 
 
@@ -46,14 +46,14 @@ class FluxSchnell:
 
     def instantiate_model(self, repo_id, device, dtype, enable_sequential_cpu_offload):
         """Returns instantiated model"""
-        model = DiffusionPipeline.from_pretrained(repo_id,
+        model = FluxPipeline.from_pretrained(repo_id,
                                                   torch_dtype=dtype)
         if enable_sequential_cpu_offload:
             model.enable_sequential_cpu_offload(device=device)
         else:
             model = model.to(device)
             
-        # model.load_lora_weights("Kvisten/nocco-apple-flux-v3", weight_name="nocco_apple_v3.safetensors")
+        #model.load_lora_weights("Kvisten/nocco-apple-flux-v3", weight_name="nocco_apple_v3.safetensors")
         return model
     
     def initialize_device(self, device: str):
