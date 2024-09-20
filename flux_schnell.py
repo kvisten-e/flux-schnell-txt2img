@@ -33,6 +33,7 @@ class FluxSchnell:
                             generator=generator,
                             width=width,
                             height=height,
+                            max_sequence_length=256,
                             guidance_scale=guidance_scale
                             ).images
         for i, image in enumerate(images):
@@ -47,7 +48,7 @@ class FluxSchnell:
     def instantiate_model(self, repo_id, device, dtype, enable_sequential_cpu_offload):
         """Returns instantiated model"""
         model = FluxPipeline.from_pretrained(repo_id,
-                                                  torch_dtype=dtype)
+                                            torch_dtype=dtype)
         if enable_sequential_cpu_offload:
             model.enable_sequential_cpu_offload(device=device)
         else:
