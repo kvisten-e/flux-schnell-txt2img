@@ -39,10 +39,16 @@ def parse_arguments():
                         type=float, 
                         default=7.5,
                         help="Guidance scale for controlling adherence to the prompt. Default: 7.5")
-    parser.add_argument("--num_images", 
-                        type=int, 
-                        default=1,
-                        help="Amount of images to generate. Default: 1")
+    
+    parser.add_argument("--model_name", 
+                        type=str, 
+                        default=None,
+                        help="Huggingface link of model name. Default: None")
+    
+    parser.add_argument("--weight_name", 
+                        type=str, 
+                        default=None,
+                        help="Huggingface link. Default: None")
              
     return parser.parse_args()
 
@@ -57,4 +63,6 @@ if __name__ == "__main__":
                args.seed,
                args.width,
                args.height,
-               args.guidance_scale)
+               args.guidance_scale,
+               args.model_name,
+               args.weight_name)

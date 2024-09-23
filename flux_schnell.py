@@ -21,10 +21,12 @@ class FluxSchnell:
                                             enable_sequential_cpu_offload)
         if create_dirs: self.create_dirs(self.module_dir)
 
-    def generate(self, prompt, num_inference_steps=4, seed=None, width=1024, height=1024, guidance_scale=7.5, num_images=1, save=True, show=True):
+    def generate(self, prompt, num_inference_steps=4, seed=None, width=1024, height=1024, guidance_scale=7.5, save=True, show=True):
         """Returns list of generated images for given prompts"""
         if seed is None:
             seed = -1
+            
+        
         
         generator = torch.Generator("cpu").manual_seed(seed)
         
@@ -45,7 +47,7 @@ class FluxSchnell:
                 image.show()
         return images
 
-    def instantiate_model(self, repo_id, device, dtype, enable_sequential_cpu_offload):
+    def instantiate_model(self, repo_id, device, dtype, enable_sequential_cpu_offload, model_name=None, weight_name=None):
         """Returns instantiated model"""
         model = FluxPipeline.from_pretrained(repo_id,
                                             torch_dtype=dtype)
@@ -54,7 +56,12 @@ class FluxSchnell:
         else:
             model = model.to(device)
             
-        #model.load_lora_weights("Kvisten/nocco-apple-flux-v3", weight_name="nocco_apple_v3.safetensors")
+        if model_name is not None:
+            if weight_name is not None:    
+                model.load_lora_weights(model_name, weight_name=weight_name)
+            else:
+                model.load_lora_weights(model_name)
+            
         return model
     
     def initialize_device(self, device: str):
