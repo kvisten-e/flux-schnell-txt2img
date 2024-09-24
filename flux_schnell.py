@@ -61,8 +61,9 @@ class FluxSchnell:
                 model.load_lora_weights(model_name, weight_name=weight_name)
             else:
                 model.load_lora_weights(model_name)
-        elif model_name is None and weight_name is not None:
-            model.load_lora_weights(weight_name)
+        else:
+            if weight_name is not None:
+                model.load_lora_weights(weight_name)
               
         return model
     
