@@ -56,14 +56,14 @@ class FluxSchnell:
         else:
             model = model.to(device)
             
-        if model_name is not None:
-            if weight_name is not None:    
-                model.load_lora_weights(model_name, weight_name=weight_name)
-            else:
-                model.load_lora_weights(model_name)
-        else:
-            if weight_name is not None:
-                model.load_lora_weights(weight_name)
+        # if model_name is not None:
+        #     if weight_name is not None:    
+        #         model.load_lora_weights(model_name, weight_name=weight_name)
+        #     else:
+        #         model.load_lora_weights(model_name)
+        # else:
+        #     if weight_name is not None:
+        #         model.load_lora_weights(weight_name)
               
         return model
     
